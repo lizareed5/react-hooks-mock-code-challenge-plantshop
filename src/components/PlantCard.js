@@ -1,10 +1,18 @@
 import React, {useState} from "react";
 
-function PlantCard({plant}) {
+function PlantCard({plant, handleDeletePlant}) {
   const [isPlantInStock, setIsPlantInStock] = useState(true)
   
   const handleSoldOutClick = () => {
     setIsPlantInStock(!isPlantInStock)
+  }
+
+  const handleDeleteClick = () => {
+    fetch(`http://localhost:6001/plants/${plant.id}`, {
+      method: "DELETE",
+      }
+    )
+    .then(plant => handleDeletePlant(plant))
   }
 
   return (
@@ -22,6 +30,10 @@ function PlantCard({plant}) {
           onClick={handleSoldOutClick}
         >Out of Stock</button>
       )}
+      <button
+        className="delete"
+        onClick={handleDeleteClick}
+      >DELETE</button>
     </li>
   );
 }

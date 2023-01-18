@@ -1,11 +1,12 @@
 import React from "react";
 import PlantCard from "./PlantCard";
 
-function PlantList({plantList}) {
+function PlantList({plantList, handleDeletePlant}) {
   const plantCardsList = plantList.map(plant =>
     <PlantCard
       key={plant.id}
       plant={plant}
+      handleDeletePlant={handleDeletePlant}
     />
     )
   

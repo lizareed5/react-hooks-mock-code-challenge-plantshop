@@ -20,7 +20,6 @@ function PlantPage() {
       image: e.target.image.value,
       price: e.target.price.value
     }
-    console.log(newPlantObj)
     handleNewPlantPost(newPlantObj)
   }
   
@@ -43,6 +42,11 @@ function PlantPage() {
   }
 
   const filteredPlants = plantList.filter(plant => plant.name.toLowerCase().includes(searchText.toLowerCase()))
+  
+  const handleDeletePlant = (plantToDelete) => {
+    const updatedPlantsList = filteredPlants.filter(plant => plant.id !== plantToDelete.id)
+    setPlantList(updatedPlantsList)
+  }
 
   return (
     <main>
@@ -55,6 +59,7 @@ function PlantPage() {
       />
       <PlantList 
         plantList={filteredPlants}
+        handleDeletePlant={handleDeletePlant}
       />
     </main>
   );
