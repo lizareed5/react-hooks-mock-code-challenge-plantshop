@@ -32,6 +32,10 @@ button.delete {
   background-color: lightgray;
   color: red;
 }
+button.price {
+  background-color: rgb(239, 173, 149);
+  color: rgb(5, 128, 203);
+}
 
 .app {
   margin: 0 auto;

@@ -2,6 +2,7 @@ import React, {useState} from "react";
 
 function PlantCard({plant, handleDeletePlant}) {
   const [isPlantInStock, setIsPlantInStock] = useState(true)
+  const [updatedPrice, setUpdatedPrice] = useState("")
   
   const handleSoldOutClick = () => {
     setIsPlantInStock(!isPlantInStock)
@@ -13,6 +14,19 @@ function PlantCard({plant, handleDeletePlant}) {
       }
     )
     .then(plant => handleDeletePlant(plant))
+  }
+
+  const handlePriceChangeInput = (e) => {
+    setUpdatedPrice(e.target.value)
+  }
+  
+  const handlePriceChangeSubmit = (e) => {
+    e.preventDefault()
+    const newPriceObj = {
+      updatedPrice: plant.price
+    }
+    plant.price = newPriceObj
+
   }
 
   return (
@@ -34,6 +48,21 @@ function PlantCard({plant, handleDeletePlant}) {
         className="delete"
         onClick={handleDeleteClick}
       >DELETE</button>
+      <form onSubmit={handlePriceChangeSubmit}>
+        <input 
+            type="number" 
+            name="editPrice" 
+            step="0.01" 
+            placeholder="Edit Price" 
+            value={updatedPrice}
+            onChange={handlePriceChangeInput}
+          />
+        <button
+          type="submit"
+          className="price"
+        >submit edit price</button>
+      </form>
+      
     </li>
   );
 }
