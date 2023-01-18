@@ -12,9 +12,35 @@ function PlantPage() {
     .then(data => setPlantList(data))
   })
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newPlantObj = {
+      name: e.target.name.value,
+      image: e.target.image.value,
+      price: e.target.price.value
+    }
+    console.log(newPlantObj)
+    handleNewPlantPost(newPlantObj)
+  }
+  
+  const handleNewPlantPost = (newPlantObj) => {
+    fetch("http://localhost:6001/plants", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept" : "application/json",
+      },
+      body: JSON.stringify(newPlantObj)
+    })
+    .then(response => response.json())
+    .then(returnData => setPlantList([...plantList, returnData])
+    )
+  }
   return (
     <main>
-      <NewPlantForm />
+      <NewPlantForm 
+        handleSubmit={handleSubmit}
+      />
       <Search />
       <PlantList 
         plantList={plantList}
