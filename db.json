@@ -45,7 +45,7 @@
     {
       "name": "Pilea",
       "image": "https://www.plantvine.com/plants/Pilea-Medium-1.jpg",
-      "price": "11",
+      "price": 11,
       "id": 8
     }
   ]

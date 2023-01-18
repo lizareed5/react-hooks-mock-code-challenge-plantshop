@@ -23,10 +23,19 @@ function PlantCard({plant, handleDeletePlant}) {
   const handlePriceChangeSubmit = (e) => {
     e.preventDefault()
     const newPriceObj = {
-      updatedPrice: plant.price
+      price: parseInt(updatedPrice)
     }
     plant.price = newPriceObj
-
+    fetch(`http://localhost:6001/plants/${plant.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept" : "application/json",
+      },
+      body: JSON.stringify(newPriceObj)
+    })
+    .then(response => response.json())
+    .then(newPriceObj)
   }
 
   return (

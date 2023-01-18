@@ -20,6 +20,8 @@ function PlantPage() {
       image: e.target.image.value,
       price: e.target.price.value
     }
+    // console.log(newPlantObj)
+    // setPlantList([...plantList, newPlantObj])
     handleNewPlantPost(newPlantObj)
   }
   
